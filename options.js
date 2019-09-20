@@ -36,8 +36,8 @@ async function attachSearchRunner() {
     const id = await initWindow();
     await waitPageNav(id);
     await injectHelperScripts(id);
-    await delay(1000);
-    await search(id, 'SFO', 'SIN', moment('20191002', 'YYYYMMDD'),
+    await delay(2500);
+    await search(id, 'SEA', 'SIN', moment('20191002', 'YYYYMMDD'),
         moment('20191010', 'YYYYMMDD'), 'business', '4');
   }
 

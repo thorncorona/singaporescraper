@@ -170,8 +170,12 @@ async function search(
   console.log('executed search script');
   chrome.tabs.executeScript(tabid, {code: searchScript});
   await waitPageNav(tabid);
+  while ((await chrome.tabs.get(tabid)).status === 'loading') {
+    console.log('waiting...');
+    await delay(500);
+  }
   await checkCaptcha(tabid);
-  await delay(15000);
+  await delay(2000);
 
   await sendMessage(tabid, {
     'action': 'searchRequestCheck',
@@ -192,7 +196,7 @@ async function search(
 
 async function checkCaptcha(tabid) {
   console.log('checking captcha');
-  while ((await chrome.tabs.get(tabid)).state === 'loading') {
+  while ((await chrome.tabs.get(tabid)).status === 'loading') {
     console.log('waiting...');
     await delay(500);
   }
