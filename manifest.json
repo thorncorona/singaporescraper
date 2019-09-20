@@ -3,16 +3,23 @@
   "version": "1.0",
   "description": "Simple airline scraper",
   "permissions": [
+    "alarms",
     "tabs",
     "activeTab",
     "storage",
     "webNavigation",
-    "https://*.singaporeair.com/*"
+    "notifications",
+    "http://*/",
+    "https://*/"
   ],
   "options_page": "options.html",
   "background": {
-    "scripts": ["background.js"],
-    "persistent": false
+    "scripts": [
+      "scripts/chrome-extension-async.js",
+      "scrape.js",
+      "background.js"
+    ],
+    "persistent": true
   },
   "page_action": {
     "default_popup": "popup.html",
